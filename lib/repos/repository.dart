@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:restapi_bloc/models/user_model.dart';
 
 class UserRepository{
-  String endPoint='https://reqres.in/api/users?page=2';
+  String endPoint='https://reqres.in/api/users?page=33';
 
   Future<List<UserModel>> getuser () async {
     Response response = await get(Uri.parse(endPoint));

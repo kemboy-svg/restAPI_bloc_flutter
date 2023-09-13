@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restapi_bloc/bloc/user_bloc.dart';
+import 'package:restapi_bloc/models/user_model.dart';
 import 'package:restapi_bloc/repos/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,9 +37,40 @@ class home extends StatelessWidget {
         ),
         body: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            if (state is UserLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is UserLoaded) {
+              List<UserModel> userList = state.users;
+              print("data$userList");
+              ListView.builder(
+                  itemCount: userList.length,
+                  itemBuilder: (_, index) {
+                    return Card(
+                      color: Colors.blue,
+                      elevation: 4,
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: ListTile(
+                        title: Text(
+                          userList[index].first_name,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        subtitle: Text(
+                          userList[index].last_name,
+                          style: TextStyle(color: Colors.blueGrey),
+                        ),
+                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].avator),),
+                      ),
+                    );
+                  });
+            } 
+            if (state is UserError){
+              return Center(child: Text("An error occured while fetching"));
+            }
+              return Container();
+          
           },
         ),
       ),
