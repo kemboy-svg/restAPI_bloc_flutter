@@ -44,8 +44,8 @@ class home extends StatelessWidget {
             }
             if (state is UserLoaded) {
               List<UserModel> userList = state.users;
-              print("data$userList");
-              ListView.builder(
+              print(userList);
+               ListView.builder(
                   itemCount: userList.length,
                   itemBuilder: (_, index) {
                     return Card(
@@ -54,23 +54,26 @@ class home extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 10),
                       child: ListTile(
                         title: Text(
-                          userList[index].first_name,
+                          userList[index].FirstName,
                           style: TextStyle(color: Colors.black),
                         ),
                         subtitle: Text(
-                          userList[index].last_name,
+                          userList[index].LastName,
                           style: TextStyle(color: Colors.blueGrey),
                         ),
-                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].avator),),
+                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].Avator),),
                       ),
                     );
                   });
-            } 
+            }
+             
             if (state is UserError){
               return Center(child: Text("An error occured while fetching"));
             }
-              return Container();
-          
+            
+          else{
+             return Center(child: Text("Please wait as I debug"));
+          }
           },
         ),
       ),

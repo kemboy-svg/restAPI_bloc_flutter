@@ -12,11 +12,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepository;
 
   UserBloc(this._userRepository) : super(UserLoading()) {
-    on<UserEvent>((event, emit) async {
+    on<LoadUserEvent>((event, emit) async {
       emit(UserLoading());
       try {
         final users=await _userRepository.getuser();
+        
         emit (UserLoaded(users));
+        
         
       } catch (e) {
         emit(UserError(e.toString()));
