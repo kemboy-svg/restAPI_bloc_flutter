@@ -44,7 +44,7 @@ class home extends StatelessWidget {
             }
             if (state is UserLoaded) {
               List<UserModel> userList = state.users;
-              print(userList);
+              
                ListView.builder(
                   itemCount: userList.length,
                   itemBuilder: (_, index) {
@@ -54,14 +54,14 @@ class home extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 10),
                       child: ListTile(
                         title: Text(
-                          userList[index].FirstName,
+                          userList[index].firstName,
                           style: TextStyle(color: Colors.black),
                         ),
                         subtitle: Text(
-                          userList[index].LastName,
+                          userList[index].lastName,
                           style: TextStyle(color: Colors.blueGrey),
                         ),
-                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].Avator),),
+                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].avatar),),
                       ),
                     );
                   });
