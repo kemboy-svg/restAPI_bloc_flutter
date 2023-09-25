@@ -14,8 +14,6 @@ class UserRepository{
      print(result);
     return  
      result.map(((e) => UserModel.fromJson(e))).toList();
-     
-    
     }
     else{
       throw Exception(response.reasonPhrase);

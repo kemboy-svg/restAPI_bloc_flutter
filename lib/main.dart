@@ -45,23 +45,26 @@ class home extends StatelessWidget {
             if (state is UserLoaded) {
               List<UserModel> userList = state.users;
               
-               ListView.builder(
+               return ListView.builder(
                   itemCount: userList.length,
                   itemBuilder: (_, index) {
-                    return Card(
-                      color: Colors.blue,
-                      elevation: 4,
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: ListTile(
-                        title: Text(
-                          userList[index].firstName,
-                          style: TextStyle(color: Colors.black),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        color: Colors.blue,
+                        elevation: 4,
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        child: ListTile(
+                          title: Text(
+                            userList[index].firstName,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          subtitle: Text(
+                            userList[index].lastName,
+                            style: TextStyle(color: Colors.blueGrey),
+                          ),
+                          trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].avatar),),
                         ),
-                        subtitle: Text(
-                          userList[index].lastName,
-                          style: TextStyle(color: Colors.blueGrey),
-                        ),
-                        trailing: CircleAvatar(backgroundImage: NetworkImage(userList[index].avatar),),
                       ),
                     );
                   });
@@ -72,7 +75,7 @@ class home extends StatelessWidget {
             }
             
           else{
-             return Center(child: Text("Please wait as I debug"));
+             return Center(child: Text("Please wait as I debug"),);
           }
           },
         ),
